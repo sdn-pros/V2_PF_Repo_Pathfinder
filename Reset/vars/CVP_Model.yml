@@ -1,0 +1,447 @@
+cvaas_configlets:
+
+  ATD-INFRA: "{{ lookup('file', '../configlets/ATD-INFRA.cfg') }}"
+  Edge10-BASE: "{{ lookup('file', '../configlets/Edge10-BASE.cfg') }}"
+  Edge11-BASE: "{{ lookup('file', '../configlets/Edge11-BASE.cfg') }}"
+  Edge12-BASE: "{{ lookup('file', '../configlets/Edge12-BASE.cfg') }}"
+  Edge13-BASE: "{{ lookup('file', '../configlets/Edge13-BASE.cfg') }}"
+  Edge14-BASE: "{{ lookup('file', '../configlets/Edge14-BASE.cfg') }}"
+  Edge20-BASE: "{{ lookup('file', '../configlets/Edge20-BASE.cfg') }}"
+  Edge21-BASE: "{{ lookup('file', '../configlets/Edge21-BASE.cfg') }}"
+  Edge22-BASE: "{{ lookup('file', '../configlets/Edge22-BASE.cfg') }}"
+  Edge23-BASE: "{{ lookup('file', '../configlets/Edge23-BASE.cfg') }}"
+  Edge24-BASE: "{{ lookup('file', '../configlets/Edge24-BASE.cfg') }}"
+  H11-BASE: "{{ lookup('file', '../configlets/H11-BASE.cfg') }}"
+  H12-BASE: "{{ lookup('file', '../configlets/H12-BASE.cfg') }}"
+  H13-BASE: "{{ lookup('file', '../configlets/H13-BASE.cfg') }}"
+  H14-BASE: "{{ lookup('file', '../configlets/H14-BASE.cfg') }}"
+  H21-BASE: "{{ lookup('file', '../configlets/H21-BASE.cfg') }}"
+  H22-BASE: "{{ lookup('file', '../configlets/H22-BASE.cfg') }}"
+  H23-BASE: "{{ lookup('file', '../configlets/H23-BASE.cfg') }}"
+  H24-BASE: "{{ lookup('file', '../configlets/H24-BASE.cfg') }}"
+  ISP-1-BASE: "{{ lookup('file', '../configlets/ISP-1-BASE.cfg') }}"
+  ISP-2-BASE: "{{ lookup('file', '../configlets/ISP-2-BASE.cfg') }}"
+  ISP-3-BASE: "{{ lookup('file', '../configlets/ISP-3-BASE.cfg') }}"
+  Leaf11-BASE: "{{ lookup('file', '../configlets/Leaf11-BASE.cfg') }}"
+  Leaf12-BASE: "{{ lookup('file', '../configlets/Leaf12-BASE.cfg') }}"
+  Leaf21-BASE: "{{ lookup('file', '../configlets/Leaf21-BASE.cfg') }}"
+  Leaf22-BASE: "{{ lookup('file', '../configlets/Leaf22-BASE.cfg') }}"
+  P5-BASE: "{{ lookup('file', '../configlets/P5-BASE.cfg') }}"
+  P6-BASE: "{{ lookup('file', '../configlets/P6-BASE.cfg') }}"
+  P10-BASE: "{{ lookup('file', '../configlets/P10-BASE.cfg') }}"
+  P11-BASE: "{{ lookup('file', '../configlets/P11-BASE.cfg') }}"
+  P20-BASE: "{{ lookup('file', '../configlets/P20-BASE.cfg') }}"
+  P21-BASE: "{{ lookup('file', '../configlets/P21-BASE.cfg') }}"
+  R1-PE1-BASE: "{{ lookup('file', '../configlets/R1-PE1-BASE.cfg') }}"
+  R2-PE2-BASE: "{{ lookup('file', '../configlets/R2-PE2-BASE.cfg') }}"
+  P1-BASE: "{{ lookup('file', '../configlets/P1-BASE.cfg') }}"
+  P2-BASE: "{{ lookup('file', '../configlets/P2-BASE.cfg') }}"
+  P3-BASE: "{{ lookup('file', '../configlets/P3-BASE.cfg') }}"
+  P4-BASE: "{{ lookup('file', '../configlets/P4-BASE.cfg') }}"
+  PE1-BASE: "{{ lookup('file', '../configlets/PE1-BASE.cfg') }}"
+  PE2-BASE: "{{ lookup('file', '../configlets/PE2-BASE.cfg') }}"
+  PE3-BASE: "{{ lookup('file', '../configlets/PE3-BASE.cfg') }}"
+  PE4-BASE: "{{ lookup('file', '../configlets/PE4-BASE.cfg') }}"
+  RR-BASE: "{{ lookup('file', '../configlets/RR-BASE.cfg') }}"
+  RR1-BASE: "{{ lookup('file', '../configlets/RR1-BASE.cfg') }}"
+  RR2-BASE: "{{ lookup('file', '../configlets/RR2-BASE.cfg') }}"
+  RR3-BASE: "{{ lookup('file', '../configlets/RR3-BASE.cfg') }}"
+  RR4-BASE: "{{ lookup('file', '../configlets/RR4-BASE.cfg') }}"
+  RR5-BASE: "{{ lookup('file', '../configlets/RR5-BASE.cfg') }}"
+  RR6-BASE: "{{ lookup('file', '../configlets/RR6-BASE.cfg') }}"
+
+cvaas_containers:
+  Region1:
+    parentContainerName: Tenant
+  Region2:
+    parentContainerName: Tenant
+  WAN:
+    parentContainerName: Tenant
+
+cvaas_baseline:
+  - fqdn: Edge10
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge10-BASE'
+  - fqdn: Edge11
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge11-BASE'
+  - fqdn: Edge12
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge12-BASE'
+  - fqdn: Edge13
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge13-BASE'
+  - fqdn: Edge14
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge14-BASE'
+  - fqdn: Edge20
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge20-BASE'
+  - fqdn: Edge21
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge21-BASE'
+  - fqdn: Edge22
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge22-BASE'
+  - fqdn: Edge23
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge23-BASE'
+  - fqdn: Edge24
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Edge24-BASE'
+  - fqdn: H11
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'H11-BASE'
+  - fqdn: H12
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'H12-BASE'
+  - fqdn: H13
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'H13-BASE'
+  - fqdn: H14
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'H14-BASE'
+  - fqdn: H21
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'H21-BASE'
+  - fqdn: H22
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'H22-BASE'
+  - fqdn: H23
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'H23-BASE'
+  - fqdn: H24
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'H24-BASE'
+  - fqdn: ISP-1
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'ISP-1-BASE'
+  - fqdn: ISP-2
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'ISP-2-BASE'
+  - fqdn: ISP-3
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'ISP-3-BASE'
+  - fqdn: Leaf11
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Leaf11-BASE'
+  - fqdn: Leaf12
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'Leaf12-BASE'
+  - fqdn: Leaf21
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Leaf21-BASE'
+  - fqdn: Leaf22
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'Leaf22-BASE'
+  - fqdn: P5
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P5-BASE'
+  - fqdn: P6
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P6-BASE'
+  - fqdn: P10
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'P10-BASE'
+  - fqdn: P11
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'P11-BASE'
+  - fqdn: P20
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'P20-BASE'
+  - fqdn: P21
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'P21-BASE'
+  - fqdn: R1-PE1
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'R1-PE1-BASE'
+  - fqdn: R2-PE2
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'R2-PE2-BASE'
+  - fqdn: P1
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P1-BASE'
+  - fqdn: P2
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P2-BASE'
+  - fqdn: P3
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P3-BASE'
+  - fqdn: P4
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'P4-BASE'
+  - fqdn: PE1
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'PE1-BASE'
+  - fqdn: PE2
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'PE2-BASE'
+  - fqdn: PE3
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'PE3-BASE'
+  - fqdn: PE4
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'PE4-BASE'
+  - fqdn: RR
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR-BASE'
+  - fqdn: RR1
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR1-BASE'
+  - fqdn: RR2
+    parentContainerName: Region1
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR2-BASE'
+  - fqdn: RR3
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR3-BASE'
+  - fqdn: RR4
+    parentContainerName: Region2
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR4-BASE'
+  - fqdn: RR5
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR5-BASE'
+  - fqdn: RR6
+    parentContainerName: WAN
+    configlets:
+      - 'ATD-INFRA'
+      - 'RR6-BASE'
+
+
+
+cvaas_PF_underlay:
+  - fqdn: Edge10
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge10'
+  - fqdn: Edge11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge11'
+  - fqdn: Edge12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge12'
+  - fqdn: Edge13
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge13'
+  - fqdn: Edge14
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Edge14'
+  - fqdn: H11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H11'
+  - fqdn: H12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H12'
+  - fqdn: H13
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H13'
+  - fqdn: H14
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_H14'
+  - fqdn: ISP-1
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_ISP-1'
+  - fqdn: ISP-3
+    parentContainerName: WAN
+    configlets:
+      - 'Underlay_ISP-3'
+  - fqdn: Leaf11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Leaf11'
+  - fqdn: Leaf12
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_Leaf12'
+  - fqdn: P10
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_P10'
+  - fqdn: P11
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_P11'
+  - fqdn: R1-PE1
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_R1-PE1'
+  - fqdn: RR1 
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_RR1'
+  - fqdn: RR2
+    parentContainerName: Region1
+    configlets:
+      - 'Underlay_RR2'
+
+  - fqdn: Edge20
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge20'
+  - fqdn: Edge21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge21'
+  - fqdn: Edge22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge22'
+  - fqdn: Edge23
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge23'
+  - fqdn: Edge24
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Edge24'
+  - fqdn: H21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H21'
+  - fqdn: H22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H22'
+  - fqdn: H23
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H23'
+  - fqdn: H24
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_H24'
+  - fqdn: ISP-2
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_ISP-2'
+  - fqdn: Leaf21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Leaf21'
+  - fqdn: Leaf22
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_Leaf22'
+  - fqdn: P20
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_P20'
+  - fqdn: P21
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_P21'
+  - fqdn: R2-PE2
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_R2-PE2'
+  - fqdn: RR3
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_RR3'
+  - fqdn: RR4
+    parentContainerName: Region2
+    configlets:
+      - 'Underlay_RR4'
+
