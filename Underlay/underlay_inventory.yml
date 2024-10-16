@@ -6,7 +6,7 @@ all:
         cvaas: 
           ansible_host: www.cv-prod-us-central1-c.arista.io
           ansible_user: cvaas
-          # ansible_password: "PUT_TOKEN_HERE"
+          ansible_password: "PUT_TOKEN_HERE"
           ansible_connection: httpapi
           ansible_httpapi_use_ssl: True
           ansible_httpapi_validate_certs: False
