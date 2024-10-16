@@ -1,0 +1,8 @@
+---
+- name: Validate state for Pathfinder
+  hosts: MPLS_FABRIC
+  connection: httpapi
+  tasks:
+    - name: Validate states on EOS devices
+      ansible.builtin.import_role:
+        name: arista.avd.eos_validate_state

@@ -13,13 +13,12 @@
 - name: Deploy MPLS fabric to CVaaS
   hosts: cvaas
   tasks:
-    - name: Provision CVP with AVD configuration
+    - name: Provision CVaaS with AVD Generated MPLS Configs
       ansible.builtin.import_role:
         name: arista.avd.eos_config_deploy_cvp
       vars:
-        # root_dir: "../MPLS"
         container_root: 'MPLS_FABRIC'
-        configlets_prefix: 'AVD'
+        configlets_prefix: 'MPLS'
         state: present
         execute_tasks: false # Set to true if you want the change to be made without a change control approval
         cv_collection: v3
