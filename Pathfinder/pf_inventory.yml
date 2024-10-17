@@ -1,0 +1,47 @@
+---
+all:
+  children:
+    cvp:
+      hosts:
+        cvaas: 
+          ansible_host: www.cv-prod-us-central1-c.arista.io
+          ansible_user: cvaas
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: True
+          ansible_httpapi_validate_certs: False
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+    PF_NETWORK:
+      vars:
+        ansible_user: arista
+        ansible_network_os: eos
+        ansible_password: aristapvf7
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: True
+        ansible_httpapi_validate_certs: False
+        ansible_httpapi_port: 443
+        ansible_become: true
+        ansible_become_method: enable      
+      children:
+        PATHFINDERS:
+          hosts:
+            RR1:
+            RR2:
+        REGIONS:
+          children:
+            REGION1:
+              children:
+                REGION1_EDGE:
+                  children:
+                    SITE11:
+                      hosts:
+                        Edge10:
+                    SITE12:
+                      hosts: 
+                        Edge12:
+                    SITE13:
+                      hosts:
+                        Edge13:
+                    SITE14:
+                      hosts:
+                        Edge14:

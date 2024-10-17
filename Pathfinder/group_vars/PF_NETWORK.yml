@@ -1,0 +1,95 @@
+---
+
+fabric_name: PF_NETWORK
+
+bgp_update_wait_install: false # This is needed for virtual/containerized EOS
+use_anta: true
+custom_structured_configuration_prefix: "custom_"
+
+wan_mode: cv-pathfinder
+
+bgp_as: 65000
+
+cv_pathfinder_regions:
+  - name: REGION1
+    id: 1
+    sites:
+      - name: SITE11
+        id: 101
+        location: Perris, CA
+      - name: SITE12
+        id: 102
+        location: Lake Elsinore, CA
+      - name: SITE13
+        id: 103
+        location: Byron, CA
+      - name: SITE14
+        id: 104
+        location: San Jose, CA
+      - name: SITE1_R1_PF
+        id: 198
+        location: San Francisco, CA
+
+
+# You really want to use passwords here, as lots of critical info is reflected/served from these BGP servers
+bgp_peer_groups:
+  wan_overlay_peers:
+    password: "htm4AZe9mIQOO1uiMuGgYQ=="
+    listen_range_prefixes:
+      - 10.99.101.0/24
+      - 10.99.102.0/24
+
+
+# Wan_route_server is Pathfinder
+wan_route_servers:
+  - hostname: RR1
+  - hostname: RR2
+
+wan_ipsec_profiles:
+  control_plane:
+    shared_key: 0110100A480E0A0E231D1E
+  data_plane:
+    shared_key: 0110100A480E0A0E231D1E
+
+wan_path_groups:
+  - name: mpls_path
+    id: 1001
+  - name: internet_path
+    id: 1002
+
+wan_carriers:
+  - name: mpls
+    path_group: mpls_path
+    trusted: true
+  - name: internet
+    path_group: internet_path
+    trusted: true
+
+overlay_rt_type:
+  admin_subfield: bgp_as
+
+
+tenants:
+  - name: TENANT_A
+    vrfs:
+      - name: default
+        vrf_vni: 101
+      - name: VRF_A
+        vrf_vni: 102
+
+
+wan_virtual_topologies:
+  vrfs:
+    - name: default
+      policy: DEFAULT-AVT-POLICY
+      wan_vni: 101
+    - name: VRF_A
+      policy: DEFAULT-AVT-POLICY
+      wan_vni: 102
+  policies:
+    - name: DEFAULT-AVT-POLICY
+      default_virtual_topology:
+        path_groups:
+          - names: [internet_path, mpls_path]
+            preference: preferred
+

@@ -1,0 +1,10 @@
+- name: Configuration deployment to CVaaS
+  hosts: PF_NETWORK
+  tasks:
+    - name: Deploy configurations and tags to CVaaS
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: www.cv-prod-us-central1-c.arista.io
+        cv_token: "PUT_TOKEN_HERE"
+        cv_run_change_control: true
