@@ -34,7 +34,7 @@ cv_pathfinder_regions:
 # You really want to use passwords here, as lots of critical info is reflected/served from these BGP servers
 bgp_peer_groups:
   wan_overlay_peers:
-    password: "htm4AZe9mIQOO1uiMuGgYQ=="
+    # password: "htm4AZe9mIQOO1uiMuGgYQ=="
     listen_range_prefixes:
       - 10.99.101.0/24
       - 10.99.102.0/24

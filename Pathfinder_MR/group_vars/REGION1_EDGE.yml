@@ -1,0 +1,73 @@
+---
+
+
+
+type: wan_router
+wan_router:
+  defaults:
+    # cv_pathfinder_transit_mode: region
+    loopback_ipv4_pool: 10.99.101.0/24
+    vtep_loopback_ipv4_pool: 10.99.102.0/24
+    cv_pathfinder_region: REGION1
+    filter:
+      always_include_vrfs_in_tenants: [TENANT_A]
+  nodes:
+    - name: Edge10
+      id: 11
+      cv_pathfinder_site: SITE11
+      l3_interfaces:
+        - name: Ethernet4
+          ip_address: 192.10.15.1/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet5
+          ip_address: 192.10.16.1/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true
+    - name: Edge12
+      id: 12
+      cv_pathfinder_region: REGION1
+      cv_pathfinder_site: SITE12
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.12.15.1/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.12.16.1/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true
+    - name: Edge13
+      id: 13
+      cv_pathfinder_region: REGION1
+      cv_pathfinder_site: SITE13
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.13.15.1/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.13.16.1/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true
+    - name: Edge14
+      id: 14
+      cv_pathfinder_region: REGION1
+      cv_pathfinder_site: SITE14
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.14.15.1/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.14.16.1/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true

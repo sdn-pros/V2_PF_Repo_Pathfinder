@@ -1,0 +1,203 @@
+hostname: P11
+ip_routing: true
+spanning_tree:
+  mode: none
+loopback_interfaces:
+- name: Loopback10
+  description: Region1_P11_lo10
+  shutdown: false
+  ip_address: 192.168.0.52/32
+ethernet_interfaces:
+- name: Ethernet1
+  peer: P11
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.51.52.2/24
+- name: Ethernet2
+  peer: ISP-1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.16.52.2/24
+- name: Ethernet3
+  peer: R1-PE1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.15.52.2/24
+- name: Ethernet4
+  peer: PE1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.52.81.1/24
+- name: Ethernet5
+  peer: PE2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.52.82.1/24
+- name: Ethernet6
+  peer: ISP-3
+  type: routed
+  shutdown: true
+  mtu: 1500
+  ip_address: 192.52.75.1/24
+- name: Ethernet7
+  peer: Edge14
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.14.52.2/24
+router_bgp:
+  as: 65000
+  router_id: 52.52.52.52
+  peer_groups:
+    - name: COREPE1
+      remote_as: 65001
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
+    - name: COREPE2
+      remote_as: 65001
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
+    - name: ISP-3
+      remote_as: 65002
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
+  neighbors:
+    - ip_address: 192.52.81.2
+      peer_group: COREPE1
+    - ip_address: 192.52.82.2
+      peer_group: COREPE2
+    - ip_address: 192.52.75.2
+      peer_group: ISP-3
+    - ip_address: 192.15.52.1
+      remote_as:  65102
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
+    - ip_address: 192.16.52.1
+      remote_as:  65103
+      allowas_in:
+        enabled: true
+        # Number of local ASNs allowed in a BGP update.
+        times: 6
+  address_family_ipv4:
+    neighbors:
+      - ip_address: 192.15.52.1
+        activate: true
+        route_map_out: E3OUT
+      - ip_address: 192.16.52.1
+        activate: true
+        route_map_out: E2OUT
+    peer_groups:
+      - name: COREPE1
+        activate: true
+        route_map_out: E4OUT
+      - name: COREPE2
+        activate: true
+        route_map_out: E5OUT
+      - name: ISP-3
+        activate: false
+        route_map_out: E6OUT
+    networks:
+      - prefix: 192.168.0.52/32
+
+prefix_lists:
+  - name: E2OUT
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.16.52.0/24
+      - sequence: 20
+        action: permit 192.168.0.52/32
+  - name: E3OUT
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.15.52.0/24
+      - sequence: 20
+        action: permit 192.168.0.52/32
+  - name: E4OUT
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.52.81.0/24
+      - sequence: 20
+        action: permit 192.168.0.52/32
+      - sequence: 30
+        action: permit 192.15.71.0/32  
+      - sequence: 40
+        action: permit 192.15.72.0/32 
+      - sequence: 50
+        action: permit 192.16.71.0/32  
+      - sequence: 60
+        action: permit 192.16.72.0/32 
+  - name: E5OUT
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.52.82.0/24
+      - sequence: 20
+        action: permit 192.168.0.52/32
+      - sequence: 30
+        action: permit 192.15.71.0/32  
+      - sequence: 40
+        action: permit 192.15.72.0/32 
+      - sequence: 50
+        action: permit 192.16.71.0/32  
+      - sequence: 60
+        action: permit 192.16.72.0/32 
+  - name: E6OUT
+    sequence_numbers:
+      - sequence: 10
+        action: permit 192.52.75.0/24
+      - sequence: 20
+        action: permit 192.168.0.52/32
+      - sequence: 30
+        action: permit 192.15.71.0/32  
+      - sequence: 40
+        action: permit 192.15.72.0/32 
+      - sequence: 50
+        action: permit 192.16.71.0/32  
+      - sequence: 60
+        action: permit 192.16.72.0/32 
+
+route_maps:
+  - name: E2OUT
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list E2OUT
+  - name: E3OUT
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list E3OUT
+  - name: E4OUT
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list E4OUT
+  - name: E5OUT
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list E5OUT
+  - name: E6OUT
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list E6OUT
+         
+

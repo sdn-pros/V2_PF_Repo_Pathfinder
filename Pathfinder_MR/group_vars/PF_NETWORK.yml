@@ -1,0 +1,160 @@
+---
+
+
+fabric_name: PF_NETWORK
+
+# This is needed for virtual/containerized EOS
+bgp_update_wait_install: false
+custom_structured_configuration_prefix: "custom_"
+
+# Can also be just autovpn
+wan_mode: cv-pathfinder
+
+bgp_as: 65000
+
+bgp_peer_groups:
+  wan_overlay_peers:
+    # password: "htm4AZe9mIQOO1uiMuGgYQ=="
+    listen_range_prefixes:
+      - 10.99.101.0/24
+      - 10.99.102.0/24
+      - 10.99.201.0/24
+      - 10.99.202.0/24
+
+
+wan_route_servers:
+  - hostname: RR1
+  - hostname: RR2
+  - hostname: RR3
+  - hostname: RR4
+
+cv_pathfinder_regions:
+  - name: REGION1
+    id: 1
+    sites:
+      - name: SITE11
+        id: 101
+      - name: SITE12
+        id: 102
+      - name: SITE13
+        id: 103
+      - name: SITE14
+        id: 104
+      - name: TRANSIT1
+        id: 199
+      - name: SITE1_R1_PF
+        id: 198
+  - name: REGION2
+    id: 2
+    sites:
+      - name: SITE21
+        id: 201
+      - name: SITE22
+        id: 202
+      - name: SITE23
+        id: 203
+      - name: SITE24
+        id: 204
+      - name: TRANSIT2
+        id: 299
+      - name: SITE1_R2_PF
+        id: 298
+
+wan_ipsec_profiles:
+  control_plane:
+    shared_key: 0110100A480E0A0E231D1E
+  data_plane:
+    shared_key: 0110100A480E0A0E231D1E
+
+wan_path_groups:
+  - name: internet_path
+    id: 1001
+  - name: mpls_r1_path
+    id: 1002
+  - name: mpls_r2_path
+    id: 1005
+  - name: mpls_global_path
+    id: 1006
+
+wan_carriers:
+  - name: mpls_r1
+    path_group: mpls_r1_path
+    trusted: true
+  - name: mpls_r2
+    path_group: mpls_r2_path
+    trusted: true
+  - name: mpls_global
+    path_group: mpls_global_path
+    trusted: true
+  - name: comcast
+    path_group: internet_path
+    trusted: true
+  - name: BT
+    path_group: internet_path
+    trusted: true
+  - name: ATT
+    path_group: internet_path
+    trusted: true
+
+
+wan_virtual_topologies:
+  vrfs:
+    - name: default
+      policy: DEFAULT-AVT-POLICY
+      wan_vni: 101
+    - name: VRF_A
+      policy: PROD-AVT-POLICY
+      wan_vni: 102
+  policies:
+    - name: DEFAULT-AVT-POLICY
+      default_virtual_topology:
+        path_groups:
+          - names: [internet_path]
+            preference: preferred
+    - name: PROD-AVT-POLICY
+      application_virtual_topologies:
+        - application_profile: APP_TELNET_PROFILE
+          id: 2
+          path_groups:
+            - names: [mpls_global_path, mpls_r1_path, mpls_r2_path]
+              preference: preferred
+        - application_profile: APP_SSH_PROFILE
+          id: 3
+          path_groups:
+            - names: [internet_path]
+              preference: preferred
+      default_virtual_topology:
+        constraints:
+          latency: 2
+        path_groups:
+          - names: [internet_path, mpls_global_path, mpls_r1_path, mpls_r2_path]
+            preference: preferred
+application_classification:
+  field_sets:
+    l4_ports:
+      - name: APP_1_SSH_PORTS
+        port_values:
+          -  '22'
+  applications:
+    ipv4_applications:
+      - name: APP_1_SSH
+        protocols:
+          - 'tcp'
+        tcp_dest_port_set_name: APP_1_SSH_PORTS
+  application_profiles:
+    - name: APP_SSH_PROFILE
+      applications:
+        - name: APP_1_SSH
+    - name: APP_TELNET_PROFILE
+      applications:
+        - name: telnet
+overlay_rt_type:
+  admin_subfield: bgp_as
+tenants:
+  - name: TENANT_A
+    vrfs:
+      - name: default
+        vrf_vni: 101
+      - name: VRF_A
+        vrf_vni: 102
+

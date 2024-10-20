@@ -1,0 +1,12 @@
+- name: Configuration deployment to CVaaS
+  hosts: PF_NETWORK # <-- Targeted devices
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Deploy configurations and tags to CloudVision
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: www.cv-prod-us-central1-c.arista.io
+        cv_run_change_control: true
+        cv_token: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcyMzEyODYwODY2NTAxODA2NDUsImRzbiI6ImFuc2libGUiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzUxNzI0MDkxLCJpYXQiOjE3Mjg1Njg4OTUsIm9naSI6NzIzMTI4NjA4NjY1MDE3NDUyMywib2duIjoicGF0aGZpbmRlci0yMCIsInNpZCI6IjY0OTRjODE2MTU5NjFjMjc3OWMzYjUzYjYxZDkxNjg5MDgxZTE2ZmFlZDNhYjlmNjBiMjE4ZjA4OWZjNzU2ZTQteU1UeF9jVDdwQ3ZMOF9pSk51UnVHSUFXODNLRXphdHE1cmZTM2VteCJ9.y9qGRAHrfCGAXejZNivzHsisjyUknsUOKVkG6FY6jC007yUSb5YCakIn7phrfwIGz8SAs0p3UYlI_B5nsuWxQg"

@@ -89,10 +89,10 @@ router_bgp:
     neighbors:
     peer_groups:
       - name: REGION1
-        activate: false
+        activate: true
         # route_map_out: DEFAULTONLY
       - name: REGION2
-        activate: false
+        activate: true
         # route_map_out: DEFAULTONLY
       - name: R1Internet
         activate: true

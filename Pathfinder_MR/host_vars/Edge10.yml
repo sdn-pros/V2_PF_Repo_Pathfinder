@@ -1,0 +1,9 @@
+custom_hostname: Edge10
+custom_ethernet_interfaces:
+  - name: Ethernet3
+    type: routed
+    flow_tracker:
+      hardware: FLOW-TRACKER
+  
+
+

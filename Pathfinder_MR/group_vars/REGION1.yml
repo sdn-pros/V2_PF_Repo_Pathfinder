@@ -1,0 +1,65 @@
+overlay_rt_type:
+  admin_subfield: bgp_as
+tenants:
+  - name: TENANT_A
+    vrfs:
+      - name: default
+        vrf_vni: 101
+      - name: VRF_A
+        vrf_vni: 102
+
+wan_virtual_topologies:
+  vrfs:
+    - name: default
+      policy: DEFAULT-AVT-POLICY
+      wan_vni: 101
+    - name: VRF_A
+      policy: PROD-AVT-POLICY
+      wan_vni: 102
+  policies:
+    - name: DEFAULT-AVT-POLICY
+      default_virtual_topology:
+        path_groups:
+          - names: [internet_path]
+            preference: preferred
+    - name: PROD-AVT-POLICY
+      application_virtual_topologies:
+        - application_profile: APP_TELNET_PROFILE
+          id: 2
+          path_groups:
+            - names: [mpls_global_path, mpls_r1_path, mpls_r2_path]
+              preference: preferred
+        - application_profile: APP_SSH_PROFILE
+          id: 3
+          path_groups:
+            - names: [internet_path]
+              preference: preferred
+      default_virtual_topology:
+        constraints:
+          latency: 2
+        path_groups:
+          - names: [internet_path, mpls_global_path, mpls_r1_path, mpls_r2_path]
+            preference: preferred
+application_classification:
+  field_sets:
+    l4_ports:
+      - name: APP_1_SSH_PORTS
+        port_values:
+          -  '22'
+  applications:
+    ipv4_applications:
+      - name: APP_1_SSH
+        protocols:
+          - 'tcp'
+        tcp_dest_port_set_name: APP_1_SSH_PORTS
+  application_profiles:
+    - name: APP_SSH_PROFILE
+      applications:
+        - name: APP_1_SSH
+    - name: APP_TELNET_PROFILE
+      applications:
+        - name: telnet
+
+
+
+

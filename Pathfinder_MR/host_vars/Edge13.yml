@@ -1,0 +1,11 @@
+custom_hostname: Edge13
+custom_ethernet_interfaces:
+  - name: Ethernet1
+    flow_tracker:
+      hardware: FLOW-TRACKER
+    peer: H13
+    type: routed
+    shutdown: false
+    mtu: 1500
+    vrf: VRF_A
+    ip_address: 172.16.13.254/24

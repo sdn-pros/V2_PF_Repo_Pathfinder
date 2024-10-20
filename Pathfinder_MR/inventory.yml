@@ -1,0 +1,62 @@
+---
+all:
+  hosts: 
+    cvaas: 
+      ansible_host: www.cv-prod-us-central1-c.arista.io
+      ansible_user: cvaas
+      ansible_password: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcyMzEyODYwODY2NTAxODA2NDUsImRzbiI6ImFuc2libGUiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzUxNzI0MDkxLCJpYXQiOjE3Mjg1Njg4OTUsIm9naSI6NzIzMTI4NjA4NjY1MDE3NDUyMywib2duIjoicGF0aGZpbmRlci0yMCIsInNpZCI6IjY0OTRjODE2MTU5NjFjMjc3OWMzYjUzYjYxZDkxNjg5MDgxZTE2ZmFlZDNhYjlmNjBiMjE4ZjA4OWZjNzU2ZTQteU1UeF9jVDdwQ3ZMOF9pSk51UnVHSUFXODNLRXphdHE1cmZTM2VteCJ9.y9qGRAHrfCGAXejZNivzHsisjyUknsUOKVkG6FY6jC007yUSb5YCakIn7phrfwIGz8SAs0p3UYlI_B5nsuWxQg"
+      ansible_httpapi_use_ssl: True
+      ansible_httpapi_validate_certs: False
+      ansible_network_os: eos
+      ansible_httpapi_port: 443
+  children:
+    PF_NETWORK:
+      children:
+        pathfinder:
+          hosts:
+            RR1:
+            RR2:
+            RR3:
+            RR4:
+        REGIONS:
+          children:
+            REGION1:
+              children:
+                REGION1_EDGE:
+                  children:
+                    SITE11:
+                      hosts:
+                        Edge10:
+                    SITE12:
+                      hosts: 
+                        Edge12:
+                    SITE13:
+                      hosts:
+                        Edge13:
+                    SITE14:
+                      hosts:
+                        Edge14:
+                    REGION1_TRANSIT:
+                      hosts:
+                        P10:
+                        P11:
+            REGION2:
+              children:
+                REGION2_EDGE:
+                  children:
+                    SITE21:
+                      hosts:
+                        Edge20:
+                    SITE22:
+                      hosts: 
+                        Edge22:
+                    SITE23:
+                      hosts:
+                        Edge23:
+                    SITE24:
+                      hosts:
+                        Edge24:
+                    REGION2_TRANSIT:
+                      hosts:
+                        P20:
+                        P21:

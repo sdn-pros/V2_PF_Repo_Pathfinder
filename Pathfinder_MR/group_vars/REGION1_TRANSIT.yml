@@ -1,0 +1,72 @@
+---
+type: wan_router
+
+wan_router:
+  defaults:
+    cv_pathfinder_transit_mode: region
+    cv_pathfinder_region: REGION1
+    filter:
+      always_include_vrfs_in_tenants: [TENANT_A]
+  nodes:
+    - name: P10
+      id: 61
+      cv_pathfinder_site: TRANSIT1
+      loopback_ipv4_pool: 10.99.101.0/24
+      vtep_loopback_ipv4_pool: 10.99.102.0/24
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.15.51.2/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.16.51.2/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true
+        - name: Ethernet4
+          ip_address: 192.51.81.1/24
+          wan_carrier: mpls_global
+          flow_tracking:
+            enabled: true
+        - name: Ethernet5
+          ip_address: 192.51.82.1/24
+          wan_carrier: mpls_global
+          flow_tracking:
+            enabled: true
+        #- name: Ethernet6
+        #  ip_address: 192.51.75.1/24
+        #  wan_carrier: ATT
+        #  flow_tracking:
+        #    enabled: true
+    - name: P11
+      id: 62
+      cv_pathfinder_site: TRANSIT1
+      loopback_ipv4_pool: 10.99.101.0/24
+      vtep_loopback_ipv4_pool: 10.99.102.0/24
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.16.52.2/24
+          wan_carrier: comcast
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.15.52.2/24
+          wan_carrier: mpls_r1
+          flow_tracking:
+            enabled: true
+        - name: Ethernet4
+          ip_address: 192.52.81.1/24
+          wan_carrier: mpls_global
+          flow_tracking:
+            enabled: true
+        - name: Ethernet5
+          ip_address: 192.52.82.1/24
+          wan_carrier: mpls_global
+          flow_tracking:
+            enabled: true
+        #- name: Ethernet6
+        #  ip_address: 192.52.75.1/24
+        #  wan_carrier: ATT
+        #  flow_tracking:
+        #    enabled: true

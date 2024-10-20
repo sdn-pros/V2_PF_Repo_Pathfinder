@@ -1,0 +1,7 @@
+custom_hostname: Edge22
+custom_ethernet_interfaces:
+  - name: Ethernet1
+    type: routed
+
+    flow_tracker:
+      hardware: FLOW-TRACKER

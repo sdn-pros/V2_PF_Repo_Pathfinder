@@ -1,0 +1,57 @@
+---
+type: wan_rr
+
+
+
+wan_rr:
+  defaults:
+    data_plane_cpu_allocation_max: 1
+    loopback_ipv4_pool: 10.99.101.0/24
+    vtep_loopback_ipv4_pool: 10.99.102.0/24
+    filter:
+      always_include_vrfs_in_tenants: [TENANT_A]
+  nodes:
+    - name: RR1
+      id: 1
+      cv_pathfinder_region: REGION1
+      cv_pathfinder_site: SITE1_R1_PF
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.15.71.2/24
+          wan_carrier: mpls_r1
+        - name: Ethernet3
+          ip_address: 192.16.71.2/24
+          wan_carrier: comcast
+    - name: RR2
+      id: 2
+      cv_pathfinder_region: REGION1
+      cv_pathfinder_site: SITE1_R1_PF
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.15.72.2/24
+          wan_carrier: mpls_r1
+        - name: Ethernet3
+          ip_address: 192.16.72.2/24
+          wan_carrier: comcast
+    - name: RR3
+      id: 3
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE1_R2_PF
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.25.76.2/24
+          wan_carrier: mpls_r2
+        - name: Ethernet3
+          ip_address: 192.26.76.2/24
+          wan_carrier: BT
+    - name: RR4
+      id: 4
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE1_R2_PF
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.25.77.2/24
+          wan_carrier: mpls_r2
+        - name: Ethernet3
+          ip_address: 192.26.77.2/24
+          wan_carrier: BT

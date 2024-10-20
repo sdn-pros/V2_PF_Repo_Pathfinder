@@ -78,7 +78,7 @@ router_bgp:
 router_ospf:
   process_ids:
     - id: 10
-      router_id: 192.168.0.10
+      router_id: 192.168.0.12
       vrf: VRF_A
       redistribute:
         bgp:

@@ -1,5 +1,0 @@
-# custom_hostname: Edge12
-# custom_ethernet_interfaces:
-#   - name: Ethernet1
-#     flow_tracker:
-#       hardware: FLOW-TRACKER

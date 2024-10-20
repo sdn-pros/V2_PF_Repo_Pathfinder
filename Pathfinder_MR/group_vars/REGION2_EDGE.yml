@@ -1,0 +1,74 @@
+---
+
+
+
+type: wan_router
+wan_router:
+  defaults:
+    # cv_pathfinder_transit_mode: region
+    loopback_ipv4_pool: 10.99.201.0/24
+    vtep_loopback_ipv4_pool: 10.99.202.0/24
+    cv_pathfinder_region: REGION2
+    filter:
+      always_include_vrfs_in_tenants: [TENANT_A]
+  nodes:
+    - name: Edge20
+      id: 21
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE21
+      l3_interfaces:
+        - name: Ethernet4
+          ip_address: 192.20.25.1/24
+          wan_carrier: mpls_r2
+          flow_tracking:
+            enabled: true
+        - name: Ethernet5
+          ip_address: 192.20.26.1/24
+          wan_carrier: BT
+          flow_tracking:
+            enabled: true
+    - name: Edge22
+      id: 22
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE22
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.22.25.1/24
+          wan_carrier: mpls_r2
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.22.26.1/24
+          wan_carrier: BT
+          flow_tracking:
+            enabled: true
+    - name: Edge23
+      id: 23
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE23
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.23.25.1/24
+          wan_carrier: mpls_r2
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.23.26.1/24
+          wan_carrier: BT
+          flow_tracking:
+            enabled: true
+    - name: Edge24
+      id: 24
+      cv_pathfinder_region: REGION2
+      cv_pathfinder_site: SITE24
+      l3_interfaces:
+        - name: Ethernet2
+          ip_address: 192.24.25.1/24
+          wan_carrier: mpls_r2
+          flow_tracking:
+            enabled: true
+        - name: Ethernet3
+          ip_address: 192.24.26.1/24
+          wan_carrier: BT
+          flow_tracking:
+            enabled: true

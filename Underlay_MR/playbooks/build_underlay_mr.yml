@@ -1,0 +1,17 @@
+---
+- name: Build fabric configuration
+  hosts: REGION1, REGION2, Internet
+  tasks:
+    - name: Generate Device Configurations and Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_cli_config_gen
+
+- name: Build fabric configuration
+  hosts: MPLS_FABRIC
+  tasks:
+    - name: Generate AVD Structured Configurations and Fabric Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_designs
+    - name: Generate Device Configurations and Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_cli_config_gen
