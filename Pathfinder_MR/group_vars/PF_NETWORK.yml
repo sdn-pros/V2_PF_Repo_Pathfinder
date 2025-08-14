@@ -14,7 +14,6 @@ bgp_as: 65000
 
 bgp_peer_groups:
   wan_overlay_peers:
-    # password: "htm4AZe9mIQOO1uiMuGgYQ=="
     listen_range_prefixes:
       - 10.99.101.0/24
       - 10.99.102.0/24
