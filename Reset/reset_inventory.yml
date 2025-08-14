@@ -90,7 +90,7 @@ all:
     MPLS_FABRIC:
       vars:
         ansible_user: arista
-        ansible_ssh_pass: arista1234 
+        ansible_ssh_pass: "PASTE_TOKEN_HERE" 
         ansible_connection: httpapi
         ansible_httpapi_use_ssl: True
         ansible_httpapi_validate_certs: False
